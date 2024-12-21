@@ -1,16 +1,16 @@
 -- Wstawianie danych do tabeli doctor
 INSERT INTO doctor (doctor_number, email, first_name, last_name, specialization, telephone_number) VALUES
-('LEK001', 'lekarz1@przyklad.com', 'Jan', 'Kowalski', 'Kardiologia', '123-456-789'),
-('LEK002', 'lekarz2@przyklad.com', 'Anna', 'Nowak', 'Neurologia', '987-654-321'),
-('LEK003', 'lekarz3@przyklad.com', 'Piotr', 'Wiśniewski', 'Ortopedia', '555-123-456'),
-('LEK004', 'lekarz4@przyklad.com', 'Ewa', 'Wójcik', 'Dermatologia', '555-654-321');
+('LEK001', 'lekarz1@przyklad.com', 'Jan', 'Kowalski', 'KARDIOLOGIA', '123-456-789'),
+('LEK002', 'lekarz2@przyklad.com', 'Anna', 'Nowak', 'NEUROLOGIA', '987-654-321'),
+('LEK003', 'lekarz3@przyklad.com', 'Piotr', 'Wiśniewski', 'ORTOPEDIA', '555-123-456'),
+('LEK004', 'lekarz4@przyklad.com', 'Ewa', 'Wójcik', 'DERMATOLOGIA', '555-654-321');
 
 -- Wstawianie danych do tabeli patient
-INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number) VALUES
-('1985-05-15', 'pacjent1@przyklad.com', 'Maria', 'Kwiatkowska', 'PAC001', '555-111-222'),
-('1992-08-20', 'pacjent2@przyklad.com', 'Krzysztof', 'Kaminski', 'PAC002', '555-333-444'),
-('1978-12-30', 'pacjent3@przyklad.com', 'Barbara', 'Lewandowska', 'PAC003', '555-555-666'),
-('2000-03-10', 'pacjent4@przyklad.com', 'Tomasz', 'Zieliński', 'PAC004', '555-777-888');
+INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number, date_of_registration) VALUES
+('1985-05-15', 'pacjent1@przyklad.com', 'Maria', 'Kwiatkowska', 'PAC001', '555-111-222', '2024-12-01'),
+('1992-08-20', 'pacjent2@przyklad.com', 'Krzysztof', 'Kaminski', 'PAC002', '555-333-444', '2024-12-02'),
+('1978-12-30', 'pacjent3@przyklad.com', 'Barbara', 'Lewandowska', 'PAC003', '555-555-666', '2024-12-03'),
+('2000-03-10', 'pacjent4@przyklad.com', 'Tomasz', 'Zieliński', 'PAC004', '555-777-888', '2024-12-04');
 
 -- Wstawianie danych do tabeli address
 INSERT INTO address (address_line1, address_line2, city, postal_code, doctor_id, patient_id) VALUES
@@ -36,11 +36,11 @@ INSERT INTO visit (description, time, doctor_id, patient_id) VALUES
 
 -- Wstawianie danych do tabeli medical_treatment
 INSERT INTO medical_treatment (description, type, visit_id) VALUES
-('Przepisanie leków', 'Recepta', 1),
-('Zalecenie fizjoterapii', 'Terapia', 2),
-('Wykonanie prześwietlenia', 'Diagnoza', 3),
-('Zalecenie stosowania maści', 'Leczenie', 4),
-('Kontrola ciśnienia', 'Badanie', 5),
-('Zalecenie EEG', 'Badanie', 6),
-('Przepisanie maści', 'Recepta', 7),
-('Zalecenie rehabilitacji', 'Terapia', 8);
+('Badanie USG jamy brzusznej', 'USG', 1),
+('Elektrokardiogram (EKG)', 'EKG', 2),
+('RTG klatki piersiowej', 'RTG', 3),
+('MRI mózgu', 'MRI', 4),
+('Badanie krwi na cholesterol', 'BADANIE_KRWI', 5),
+('Badanie USG serca', 'USG', 6),
+('Szczepienie przeciw grypie', 'SZCZEPIENIE', 7),
+('EKG podczas testu wysiłkowego', 'EKG', 8),

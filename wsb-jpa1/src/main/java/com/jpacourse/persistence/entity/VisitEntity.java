@@ -1,7 +1,7 @@
 package com.jpacourse.persistence.entity;
 
+
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 import javax.persistence.*;
 
@@ -23,9 +23,13 @@ public class VisitEntity {
 	@JoinColumn(name = "patient_id") // jednostronna
 	private PatientEntity patient;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "doctor_id") // jednostronna
 	private DoctorEntity doctor;
+
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)
+	@JoinColumn(name = "medical_treatment_id") // jednostronna
+	private MedicalTreatmentEntity medicalTreatment;
 
 	public DoctorEntity getDoctor() {
 		return doctor;
@@ -67,4 +71,7 @@ public class VisitEntity {
 		this.time = time;
 	}
 
+	public MedicalTreatmentEntity getTreatment() {
+		return medicalTreatment;
+	}
 }

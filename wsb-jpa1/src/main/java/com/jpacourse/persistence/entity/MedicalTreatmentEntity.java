@@ -18,18 +18,6 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "visit_id") // jednostronna
-	private VisitEntity visit;
-
-	public VisitEntity getVisit() {
-		return visit;
-	}
-
-	public void setVisit(VisitEntity visit) {
-		this.visit = visit;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -53,5 +41,4 @@ public class MedicalTreatmentEntity {
 	public void setType(TreatmentType type) {
 		this.type = type;
 	}
-
 }

@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 public class AddressDaoImpl extends AbstractDao<AddressEntity, Long> implements AddressDao
 {
 
+    @Override
+    public AddressEntity findAddress(Long id) {
+        return entityManager.find(AddressEntity.class, id);
+    }
 }

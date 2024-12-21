@@ -5,4 +5,5 @@ import com.jpacourse.persistence.entity.AddressEntity;
 public interface AddressDao extends Dao<AddressEntity, Long>
 {
 
+    AddressEntity findAddress(Long id);
 }
