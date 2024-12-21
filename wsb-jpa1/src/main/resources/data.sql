@@ -23,24 +23,27 @@ INSERT INTO address (address_line1, address_line2, city, postal_code, doctor_id,
 ('ul. Krótka 7', 'm. 7', 'Wrocław', '50-001', 4, NULL),
 ('ul. Długa 8', 'm. 8', 'Wrocław', '50-002', NULL, 4);
 
--- Wstawianie danych do tabeli visit
-INSERT INTO visit (description, time, doctor_id, patient_id) VALUES
-('Pierwsza konsultacja', '2024-12-01 10:00:00', 1, 1),
-('Kontrola po leczeniu', '2024-12-02 11:00:00', 2, 2),
-('Konsultacja ortopedyczna', '2024-12-03 12:00:00', 3, 3),
-('Badanie dermatologiczne', '2024-12-04 13:00:00', 4, 4),
-('Kontrola kardiologiczna', '2024-12-05 14:00:00', 1, 2),
-('Konsultacja neurologiczna', '2024-12-06 15:00:00', 2, 3),
-('Kontrola dermatologiczna', '2024-12-07 16:00:00', 4, 1),
-('Badanie ortopedyczne', '2024-12-08 17:00:00', 3, 4);
 
 -- Wstawianie danych do tabeli medical_treatment
-INSERT INTO medical_treatment (description, type, visit_id) VALUES
-('Badanie USG jamy brzusznej', 'USG', 1),
-('Elektrokardiogram (EKG)', 'EKG', 2),
-('RTG klatki piersiowej', 'RTG', 3),
-('MRI mózgu', 'MRI', 4),
-('Badanie krwi na cholesterol', 'BADANIE_KRWI', 5),
-('Badanie USG serca', 'USG', 6),
-('Szczepienie przeciw grypie', 'SZCZEPIENIE', 7),
-('EKG podczas testu wysiłkowego', 'EKG', 8),
+INSERT INTO medical_treatment (description, type) VALUES
+('Badanie USG jamy brzusznej', 'USG'),
+('Elektrokardiogram (EKG)', 'EKG'),
+('RTG klatki piersiowej', 'RTG'),
+('MRI mózgu', 'MRI'),
+('Badanie krwi na cholesterol', 'BADANIE_KRWI'),
+('Badanie USG serca', 'USG'),
+('Szczepienie przeciw grypie', 'SZCZEPIENIE'),
+('EKG podczas testu wysiłkowego', 'EKG');
+
+
+-- Wstawianie danych do tabeli visit
+INSERT INTO visit (description, time, doctor_id, patient_id, medical_treatment_id) VALUES
+('Pierwsza konsultacja', '2024-12-01 10:00:00', 1, 1,1),
+('Kontrola po leczeniu', '2024-12-02 11:00:00', 2, 2,2),
+('Konsultacja ortopedyczna', '2024-12-03 12:00:00', 3, 3,3),
+('Badanie dermatologiczne', '2024-12-04 13:00:00', 4, 4,4),
+('Kontrola kardiologiczna', '2024-12-05 14:00:00', 1, 2,5),
+('Konsultacja neurologiczna', '2024-12-06 15:00:00', 2, 3,6),
+('Kontrola dermatologiczna', '2024-12-07 16:00:00', 4, 1,7),
+('Badanie ortopedyczne', '2024-12-08 17:00:00', 3, 4,8);
+--
