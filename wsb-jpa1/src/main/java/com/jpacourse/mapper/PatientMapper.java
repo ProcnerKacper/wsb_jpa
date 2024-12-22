@@ -5,7 +5,7 @@ import com.jpacourse.persistence.entity.PatientEntity;
 
 import java.util.stream.Collectors;
 
-public final class PatientMapper
+public class PatientMapper
 {
 
     public static PatientTO mapToTO(final PatientEntity patientEntity) {

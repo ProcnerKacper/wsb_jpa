@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 
 @Service
 @Transactional
@@ -32,4 +34,11 @@ public class PatientServiceImpl implements PatientService
     public void deleteById(Long id) {
         patientDao.deletePatient(id);
     }
+
+    @Override
+    public void addVisitToPatient(Long id, Long doctorId, LocalDateTime visitTime, String description)
+    {
+        patientDao.addVisitToPatient(id, doctorId, visitTime, description);
+    }
+
 }
