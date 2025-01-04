@@ -1,23 +1,25 @@
-package com.jpacourse.service.impl;
+package com.jpacourse.service;
 
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.dto.SimpleVisitTO;
+import com.jpacourse.persistence.dao.DoctorDao;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
 import com.jpacourse.persistence.enums.Specialization;
+import com.jpacourse.service.impl.PatientServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -25,13 +27,13 @@ import static org.mockito.Mockito.*;
 class PatientServiceImplTest {
 
     @MockBean
-    private EntityManager entityManager;
-
-    @MockBean
     private PatientDao patientDao;
 
     @Autowired
     private PatientServiceImpl patientService;
+
+    @Autowired
+    private DoctorDao doctorDao;
 
 
     @Test
@@ -55,26 +57,26 @@ class PatientServiceImplTest {
 
         patientEntity.setVisits(visits);
 
-        List<SimpleVisitTO> visitsto = new ArrayList<>();
-        SimpleVisitTO visitto1 = new SimpleVisitTO();
-        visitto1.setId(1L);
-        visitto1.setTime(LocalDateTime.of(2023, 1, 10, 10, 0));
-        SimpleVisitTO visitto2 = new SimpleVisitTO();
-        visitto2.setId(2L);
-        visitto2.setTime(LocalDateTime.of(2023, 2, 15, 10, 0));
-        visitsto.add(visitto1);
-        visitsto.add(visitto2);
+        List<SimpleVisitTO> visitsTo = new ArrayList<>();
+        SimpleVisitTO simpleVisitTO = new SimpleVisitTO();
+        simpleVisitTO.setId(1L);
+        simpleVisitTO.setTime(LocalDateTime.of(2023, 1, 10, 10, 0));
+        SimpleVisitTO simpleVisitTO1 = new SimpleVisitTO();
+        simpleVisitTO1.setId(2L);
+        simpleVisitTO1.setTime(LocalDateTime.of(2023, 2, 15, 10, 0));
+        visitsTo.add(simpleVisitTO);
+        visitsTo.add(simpleVisitTO1);
 
         PatientTO expectedPatientTO = new PatientTO();
         expectedPatientTO.setId(patientId);
         expectedPatientTO.setFirstName("John");
         expectedPatientTO.setLastName("Doe");
-        expectedPatientTO.setVisits(visitsto);
+        expectedPatientTO.setVisits(visitsTo);
         expectedPatientTO.setId(patientId);
         expectedPatientTO.setFirstName("John");
         expectedPatientTO.setLastName("Doe");
 
-        when(patientDao.findPatient(patientId)).thenReturn(patientEntity);
+        when(patientDao.findOne(patientId)).thenReturn(patientEntity);
 
         PatientTO actualPatientTO = patientService.findById(patientId);
 
@@ -83,7 +85,7 @@ class PatientServiceImplTest {
         assertEquals(expectedPatientTO.getFirstName(), actualPatientTO.getFirstName());
         assertEquals(expectedPatientTO.getLastName(), actualPatientTO.getLastName());
 
-        verify(patientDao, times(1)).findPatient(patientId);
+        verify(patientDao, times(1)).findOne(patientId);
         verifyNoMoreInteractions(patientDao);
     }
 
@@ -91,13 +93,13 @@ class PatientServiceImplTest {
     void testFindById_NotFound() {
         Long patientId = 99L;
 
-        when(patientDao.findPatient(patientId)).thenReturn(null);
+        when(patientDao.findOne(patientId)).thenReturn(null);
 
         PatientTO actualPatientTO = patientService.findById(patientId);
 
         assertNull(actualPatientTO);
 
-        verify(patientDao, times(1)).findPatient(patientId);
+        verify(patientDao, times(1)).findOne(patientId);
         verifyNoMoreInteractions(patientDao);
     }
 
@@ -132,16 +134,10 @@ class PatientServiceImplTest {
         patient.setDateOfRegistration(LocalDate.of(2020, 1, 1));
         patient.setVisits(Collections.singletonList(visit));
 
-        when(patientDao.findPatient(patientId)).thenReturn(patient);
-
+        when(patientDao.findOne(patientId)).thenReturn(patient);
 
         patientService.deleteById(patientId);
-
-
         verify(patientDao).deletePatient(patientId);
-
-
-        verify(entityManager, never()).remove(doctor);
-
+        assertThat(doctorDao.getOne(doctorId)).isNotNull();
     }
 }

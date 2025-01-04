@@ -11,15 +11,15 @@ import java.time.LocalDateTime;
 @Repository
 public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements PatientDao
 {
-
     @Override
-    public PatientEntity findPatient(Long id) {
-        return entityManager.find(PatientEntity.class, id);
+    public PatientEntity save(PatientEntity entity) {
+        entityManager.merge(entity);
+        return entity;
     }
 
     @Override
     public void deletePatient(Long id) {
-        var patient = findPatient(id);
+        var patient = findOne(id);
         entityManager.remove(patient);
     }
     @Override

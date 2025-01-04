@@ -19,15 +19,15 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "patient_id") // jednostronna
 	private PatientEntity patient;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "doctor_id") // jednostronna
 	private DoctorEntity doctor;
 
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.DETACH)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "medical_treatment_id") // jednostronna
 	private MedicalTreatmentEntity medicalTreatment;
 
