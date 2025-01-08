@@ -6,11 +6,11 @@ INSERT INTO doctor (doctor_number, email, first_name, last_name, specialization,
 ('LEK004', 'lekarz4@przyklad.com', 'Ewa', 'Wójcik', 'DERMATOLOGIA', '555-654-321');
 
 -- Wstawianie danych do tabeli patient
-INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number, date_of_registration) VALUES
-('1985-05-15', 'pacjent1@przyklad.com', 'Maria', 'Kwiatkowska', 'PAC001', '555-111-222', '2024-12-01'),
-('1992-08-20', 'pacjent2@przyklad.com', 'Krzysztof', 'Kaminski', 'PAC002', '555-333-444', '2024-12-02'),
-('1978-12-30', 'pacjent3@przyklad.com', 'Barbara', 'Lewandowska', 'PAC003', '555-555-666', '2024-12-03'),
-('2000-03-10', 'pacjent4@przyklad.com', 'Tomasz', 'Zieliński', 'PAC004', '555-777-888', '2024-12-04');
+INSERT INTO patient (date_of_birth, email, first_name, last_name, patient_number, telephone_number, date_of_registration,version) VALUES
+('1985-05-15', 'pacjent1@przyklad.com', 'Maria', 'Kwiatkowska', 'PAC001', '555-111-222', '2024-12-01',0),
+('1992-08-20', 'pacjent2@przyklad.com', 'Krzysztof', 'Kaminski', 'PAC002', '555-333-444', '2024-12-02',0),
+('1978-12-30', 'pacjent3@przyklad.com', 'Barbara', 'Lewandowska', 'PAC003', '555-555-666', '2024-12-03',0),
+('2000-03-10', 'pacjent4@przyklad.com', 'Tomasz', 'Zieliński', 'PAC004', '555-777-888', '2024-12-04',0);
 
 -- Wstawianie danych do tabeli address
 INSERT INTO address (address_line1, address_line2, city, postal_code, doctor_id, patient_id) VALUES
@@ -45,5 +45,7 @@ INSERT INTO visit (description, time, doctor_id, patient_id, medical_treatment_i
 ('Kontrola kardiologiczna', '2024-12-05 14:00:00', 1, 2,5),
 ('Konsultacja neurologiczna', '2024-12-06 15:00:00', 2, 3,6),
 ('Kontrola dermatologiczna', '2024-12-07 16:00:00', 4, 1,7),
+('Kontrola dermatologiczna', '2024-12-07 16:00:00', 4, 1,7),
+('Badanie ortopedyczne', '2024-12-08 17:00:00', 3, 4,8),
 ('Badanie ortopedyczne', '2024-12-08 17:00:00', 3, 4,8);
 --

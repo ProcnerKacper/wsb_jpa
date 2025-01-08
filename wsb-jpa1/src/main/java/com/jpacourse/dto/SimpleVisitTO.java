@@ -1,7 +1,6 @@
 package com.jpacourse.dto;
 
 
-import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.enums.TreatmentType;
 
 import java.io.Serializable;
@@ -12,8 +11,6 @@ public class SimpleVisitTO implements Serializable
     private Long id;
 
     private LocalDateTime time;
-
-    private DoctorEntity doctor;
 
     private MedicalTreatmentTO treatment;
 
@@ -31,18 +28,6 @@ public class SimpleVisitTO implements Serializable
 
     public void setTime(LocalDateTime time) {
         this.time = time;
-    }
-
-    public void setDoctor(DoctorEntity doctor) {
-        this.doctor = doctor;
-    }
-
-    public String getDoctorLastName() {
-        return doctor.getLastName();
-    }
-
-    public String getDoctorFirstName() {
-        return doctor.getFirstName();
     }
 
     public TreatmentType getTreatmentType() {

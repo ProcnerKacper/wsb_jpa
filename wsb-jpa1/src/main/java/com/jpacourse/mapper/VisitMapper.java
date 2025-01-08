@@ -13,7 +13,6 @@ public class VisitMapper
         }
         final SimpleVisitTO simpleVisitTO = new SimpleVisitTO();
         simpleVisitTO.setId(visitEntity.getId());
-        simpleVisitTO.setDoctor(visitEntity.getDoctor());
         simpleVisitTO.setTime(visitEntity.getTime());
         simpleVisitTO.setTreatment(MedicalTreatmentMapper.toTO(visitEntity.getTreatment()));
         return simpleVisitTO;

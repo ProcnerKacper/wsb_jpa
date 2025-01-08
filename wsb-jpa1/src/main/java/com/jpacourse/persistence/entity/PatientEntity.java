@@ -40,6 +40,10 @@ public class PatientEntity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
 	private List<VisitEntity> visits;
 
+	@Version
+	@Column(nullable = false)
+	private int version;
+
 	public AddressEntity getAddress() {
 		return address;
 	}
@@ -118,5 +122,13 @@ public class PatientEntity {
 
     public void setVisits(List<VisitEntity> visits) {
         this.visits = visits;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }
